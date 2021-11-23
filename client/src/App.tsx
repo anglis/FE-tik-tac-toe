@@ -1,17 +1,21 @@
-import React, { Suspense } from 'react';
+import { Suspense } from 'react';
 import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux'
 
 import AppRoutes from './routes';
-import './App.css';
 import Spinner from './components/shared/Spinner';
+import store from './state/store';
+import './App.css';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Suspense fallback={<Spinner />}>
-        <AppRoutes />
-      </Suspense>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Suspense fallback={<Spinner />}>
+          <AppRoutes />
+        </Suspense>
+      </BrowserRouter>
+    </Provider>
   );
 }
 
