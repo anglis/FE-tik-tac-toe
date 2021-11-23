@@ -1,0 +1,22 @@
+.game-grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.game-grid-row {
+  display: flex;
+  width: 100%;
+}
+
+.cell {
+  border: 1px solid black;
+  height: 104px;
+  width: 104px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cell-active {
+    cursor: pointer;
+}
