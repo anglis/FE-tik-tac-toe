@@ -1,3 +1,10 @@
+export type Method = "POST" | "PUT" | "GET" | "DELETE";
+
+export interface ApiProperties {
+  method?: Method;
+  body?: string;
+}
+
 class Api {
   url: string;
 
@@ -5,17 +12,17 @@ class Api {
     this.url = url;
   }
 
-  private request(url: any, params: any) {
-    localStorage.setItem(url, params);
+  request(url: any, params?: ApiProperties) {
+    localStorage.setItem(url, JSON.stringify(params));
 
     return Promise.resolve();
   }
 
-  post(url: any, params?: any) {
+  post(url: any, params?: ApiProperties) {
     return this.request(url, params);
   }
 
-  get(url: any, params?: any) {
+  get(url: any, params?: ApiProperties) {
     return this.request(url, params);
   }
 }

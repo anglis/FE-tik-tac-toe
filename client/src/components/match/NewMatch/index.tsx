@@ -1,23 +1,24 @@
-import { useState } from "react"
+import { useEffect } from "react"
+import { useDispatch } from "react-redux"
+import { addMove } from "../../../state/reducers/currentGame/AddMove"
+import { createNewGame } from "../../../state/reducers/currentGame/CreateNewGame"
+import { useAppSelector } from "../../../state/reducers/helpers"
 import Grid from "../_shared/Grid"
-import { Move } from "../_shared/Grid/interface"
 
 const NewMatch = () => {
-    const [moves, setMoves] = useState<Move[]>([
-        { row: 1, column: 1, type: "noughts" },
-        { row: 1, column: 2, type: "crosses" }
-    ])
+    const dispatch = useDispatch();
+    const gameId = useAppSelector(state => state.currentGame.gameId?.data)
+    const moves = useAppSelector(state => state.currentGame.moves?.data) || [];
+
+    useEffect(() => {
+        dispatch(createNewGame(new Date().valueOf()))
+    }, []);
 
     return <Grid moves={moves} onClick={(move) => {
-        setMoves(moves => {
-            const lastIndex = moves.length === 0 ? 0 : moves.length - 1
-            const nextType = moves[lastIndex].type === "noughts" ? "crosses" : "noughts";
+        const lastIndex = moves.length === 0 ? 0 : moves.length - 1
+        const nextType = lastIndex === 0 ? "noughts" : moves[lastIndex].type === "noughts" ? "crosses" : "noughts";
 
-            return [
-                ...moves,
-                { ...move, type: nextType }
-            ]
-        })
+        dispatch(addMove(gameId, { ...move, type: nextType, order: moves.length }))
     }} />
 }
 

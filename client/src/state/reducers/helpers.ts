@@ -1,4 +1,5 @@
-import { DuckAction } from "../interface";
+import { useSelector } from "react-redux";
+import { AppState, DuckAction } from "../interface";
 
 export function createNamedWrapperReducer<T = any>(
   reducerFunction: Function,
@@ -12,3 +13,7 @@ export function createNamedWrapperReducer<T = any>(
     return reducerFunction(state, action);
   };
 }
+
+type Selector = (state: AppState) => any;
+
+export const useAppSelector = (selector: Selector) => useSelector(selector);

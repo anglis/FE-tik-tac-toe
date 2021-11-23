@@ -1,11 +1,13 @@
+import { combineReducers } from "redux";
 import { createNamedWrapperReducer } from "./helpers";
-import fetchDataReducer from "./_ducks/fetchData";
+import requestReducer from "./_ducks/request";
 
 import { REDUCER_NAME as GAME_DETAIL_NAME } from "./gameDetails";
-import { combineReducers } from "redux";
+import currentGameReducer from "./currentGame";
 
 const reducers = combineReducers({
-  gameDetail: createNamedWrapperReducer(fetchDataReducer, GAME_DETAIL_NAME),
+  gameDetail: createNamedWrapperReducer(requestReducer, GAME_DETAIL_NAME),
+  currentGame: currentGameReducer,
 });
 
 export default reducers;

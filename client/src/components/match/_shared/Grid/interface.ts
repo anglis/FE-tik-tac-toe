@@ -9,6 +9,7 @@ export interface Move extends MovePosition {
   row: number;
   column: number;
   type: MoveType;
+  order?: number
 }
 
 export interface NormalizedMoves {
