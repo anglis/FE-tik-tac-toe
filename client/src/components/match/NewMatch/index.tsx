@@ -1,25 +1,35 @@
 import { useEffect } from "react"
 import { useDispatch } from "react-redux"
-import { addMove } from "../../../state/reducers/currentGame/AddMove"
-import { createNewGame } from "../../../state/reducers/currentGame/CreateNewGame"
+
+import { creactOrLoadNewGame, createNewGame, wipeMatch } from "../../../state/reducers/currentGame/CreateNewGame"
 import { useAppSelector } from "../../../state/reducers/helpers"
-import Grid from "../_shared/Grid"
+import GameGrid from "./GameGrid"
+import MatchHistory from "./MatchHistory"
+import "./index.css";
 
 const NewMatch = () => {
     const dispatch = useDispatch();
-    const gameId = useAppSelector(state => state.currentGame.gameId?.data)
+    const gameId = useAppSelector(state => state.currentGame.match?.data?.id)
     const moves = useAppSelector(state => state.currentGame.moves?.data) || [];
 
     useEffect(() => {
-        dispatch(createNewGame(new Date().valueOf()))
+        dispatch(creactOrLoadNewGame(new Date().valueOf()))
     }, []);
 
-    return <Grid moves={moves} onClick={(move) => {
-        const lastIndex = moves.length === 0 ? 0 : moves.length - 1
-        const nextType = lastIndex === 0 ? "noughts" : moves[lastIndex].type === "noughts" ? "crosses" : "noughts";
-
-        dispatch(addMove(gameId, { ...move, type: nextType, order: moves.length }))
-    }} />
+    return <div>
+        <div>
+            <GameGrid moves={moves} gameId={gameId} />
+        </div>
+        <div>
+            <button onClick={() => {
+                dispatch(wipeMatch)
+                dispatch(createNewGame(new Date().valueOf()))
+            }}>New Match</button>
+        </div>
+        <div>
+            <MatchHistory moves={moves} />
+        </div>
+    </div>
 }
 
 export default NewMatch

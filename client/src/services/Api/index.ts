@@ -18,14 +18,16 @@ class Api {
   }
 
   request(url: any, params?: ApiProperties) {
-    console.log(this.url + url);
-    axios.request({
-      url: this.url + url,
-      method: params?.method || "GET",
-      data: params?.body,
-    });
-
-    return Promise.resolve();
+    return axios
+      .request({
+        url: this.url + url,
+        method: params?.method || "GET",
+        data: params?.body,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => response.data);
   }
 
   post(url: any, params?: ApiProperties) {

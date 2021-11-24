@@ -4,11 +4,11 @@ import { Move } from "../components/match/_shared/Grid/interface";
 import Api from "../services/Api";
 import LocalStorage from "../services/LocalStorage";
 import { InitialState as RequestWrapper } from "./reducers/_ducks/request";
+import { Match } from "./reducers/currentGame/CreateNewGame";
 
 export interface AppState {
-  gameDetail: RequestWrapper<Move[]>;
   currentGame: {
-    gameId: RequestWrapper<number>;
+    match: RequestWrapper<Match>;
     addMove: RequestWrapper<void>;
     moves: RequestWrapper<Move[]>;
   };
@@ -16,7 +16,7 @@ export interface AppState {
 
 interface ExtraThunkArg {
   api: Api;
-  localStorage: LocalStorage
+  localStorage: LocalStorage;
 }
 
 export interface DuckAction extends AnyAction {

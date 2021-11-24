@@ -13,6 +13,10 @@ class LocalStorage {
     localStorage.setItem(this.formatKey(key), value);
   }
 
+  clearItem(key: string) {
+    localStorage.removeItem(this.formatKey(key));
+  }
+
   get(key: string): string | null {
     return localStorage.getItem(this.formatKey(key));
   }

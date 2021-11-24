@@ -6,6 +6,7 @@ export interface MovePosition {
 export type MoveType = "noughts" | "crosses";
 
 export interface Move extends MovePosition {
+  id?: number;
   row: number;
   column: number;
   type: MoveType;

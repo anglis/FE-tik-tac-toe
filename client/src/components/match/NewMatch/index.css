@@ -1,0 +1,20 @@
+.overlay {
+  position: relative;
+}
+.overlay-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay-text {
+    font-weight: bold;
+    color: white;
+}

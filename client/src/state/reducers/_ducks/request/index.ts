@@ -1,7 +1,7 @@
 import { ApiProperties, Method } from "../../../../services/Api";
 import { AppThunkAction, DuckAction } from "../../../interface";
 
-export interface InitialState<T = unknown> {
+export interface InitialState<T = any> {
   data: T;
   status: {
     loading: boolean;
@@ -105,6 +105,7 @@ export const createRequest =
           name: reducerName,
           payload: response,
         });
+        return response;
       })
       .catch((error) => {
         dispatch({
