@@ -9,12 +9,12 @@ export const createNewGame =
     const key = "currentGameId";
     const currentGameUUID = localStorage.get(key);
 
-    if (!!currentGameUUID) {
-      // const id = api.get(`/match/uuid/${Number.parseInt(currentGameUUID)}`);
-      // dispatch(getGameMoves(id as number));
+    // if (!!currentGameUUID) {
+    //   // const id = api.get(`/match/uuid/${Number.parseInt(currentGameUUID)}`);
+    //   // dispatch(getGameMoves(id as number));
 
-      return;
-    }
+    //   return;
+    // }
 
     localStorage.set(key, JSON.stringify(uuid));
 
@@ -25,6 +25,6 @@ export const createNewGame =
           body: JSON.stringify({ uuid: uuid }),
           method: "POST",
         },
-      })
+      })()
     );
   };

@@ -1,19 +1,29 @@
+import axios from "axios";
 export type Method = "POST" | "PUT" | "GET" | "DELETE";
 
 export interface ApiProperties {
   method?: Method;
-  body?: string;
+  body?: any;
+}
+
+interface ApiConstructor {
+  url: string;
 }
 
 class Api {
   url: string;
 
-  constructor({ url }: any) {
+  constructor({ url }: ApiConstructor) {
     this.url = url;
   }
 
   request(url: any, params?: ApiProperties) {
-    localStorage.setItem(url, JSON.stringify(params));
+    console.log(this.url + url);
+    axios.request({
+      url: this.url + url,
+      method: params?.method || "GET",
+      data: params?.body,
+    });
 
     return Promise.resolve();
   }

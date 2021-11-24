@@ -11,8 +11,8 @@ const store = createStore(
   composeWithDevTools(
     applyMiddleware(
       thunk.withExtraArgument({
-        api: new Api(""),
-        localStorage: new LocalStorage("tic_tac_toe")
+        api: new Api({ url: "/api" }),
+        localStorage: new LocalStorage("tic_tac_toe"),
       })
     )
   )
