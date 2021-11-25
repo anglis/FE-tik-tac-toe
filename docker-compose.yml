@@ -38,7 +38,7 @@ services:
     depends_on:
       - mysql_db
     volumes:
-      # - /app/node_modules
+      - /app/node_modules
       - ./server:/app
     environment:
       <<: *common-variables
