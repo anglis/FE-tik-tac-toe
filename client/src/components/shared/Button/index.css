@@ -1,0 +1,16 @@
+.btn {
+  width: 100%;
+  height: 56px;
+  background-color: blueviolet;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: unset;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: violet;
+  color: black;
+}

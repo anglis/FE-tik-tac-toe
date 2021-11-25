@@ -1,3 +1,7 @@
+:root {
+  --game-cell-size: 104px;
+}
+
 .App {
   text-align: center;
 }
@@ -35,4 +39,8 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.pb-2 {
+  padding-bottom: 8px;
 }

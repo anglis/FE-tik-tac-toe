@@ -6,6 +6,7 @@ import { useAppSelector } from "../../../state/reducers/helpers"
 import GameGrid from "./GameGrid"
 import MatchHistory from "./MatchHistory"
 import "./index.css";
+import Button from "../../shared/Button"
 
 const NewMatch = () => {
     const dispatch = useDispatch();
@@ -17,14 +18,14 @@ const NewMatch = () => {
     }, []);
 
     return <div>
-        <div>
+        <div className="pb-2">
             <GameGrid moves={moves} gameId={gameId} />
         </div>
-        <div>
-            <button onClick={() => {
+        <div className="pb-2">
+            <Button onClick={() => {
                 dispatch(wipeMatch)
                 dispatch(createNewGame(new Date().valueOf()))
-            }}>New Match</button>
+            }}>New Match</Button>
         </div>
         <div>
             <MatchHistory moves={moves} />
